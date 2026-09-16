@@ -1,0 +1,22 @@
+<AuBodyContainer @scroll={{true}}>
+  <div class="au-o-region au-o-layout au-o-layout--small">
+    <AuHeading @level="1" @skin="2">Gesprekken</AuHeading>
+    <AuButton
+      @loading={{this.create.isRunning}}
+      {{on "click" (perform this.create)}}
+    >
+      Nieuw gesprek
+    </AuButton>
+    <AuList class="au-u-margin-top" as |Item|>
+      {{#each @model as |conversation|}}
+        <Item>
+          <AuLink @route="conversation" @model={{conversation.id}}>
+            {{if conversation.title conversation.title "Nieuw gesprek"}}
+          </AuLink>
+        </Item>
+      {{else}}
+        <p class="au-u-muted">Nog geen gesprekken.</p>
+      {{/each}}
+    </AuList>
+  </div>
+</AuBodyContainer>

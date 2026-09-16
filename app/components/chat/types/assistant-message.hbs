@@ -1,0 +1,6 @@
+{{! Rendered markdown. Assistant content only; the user's own text stays
+    plain. The value is sanitized (DOMPurify) and marked safe in the js class. }}
+<div class="chat-md">{{this.html}}</div>
+{{#each @message.attachments as |document|}}
+  <Chat::Attachment @document={{document}} @late={{this.late}} />
+{{/each}}

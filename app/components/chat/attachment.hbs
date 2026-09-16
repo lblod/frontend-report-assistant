@@ -1,0 +1,14 @@
+{{! A loader while the file is being made, a download link when it is ready }}
+<div class="chat-attachment au-u-margin-top-tiny">
+  {{#if @document.url}}
+    <a href={{@document.url}} class="au-c-link" download={{@document.name}}>
+      {{@document.name}}
+    </a>
+  {{else if @late}}
+    <AuAlert @skin="warning" @size="small" @title={{@document.name}}>
+      Dit duurt langer dan verwacht. Vernieuw de pagina om opnieuw te kijken.
+    </AuAlert>
+  {{else}}
+    <AuLoader @inline={{true}}>{{@document.name}} wordt gemaakt</AuLoader>
+  {{/if}}
+</div>

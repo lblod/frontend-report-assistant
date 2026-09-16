@@ -1,0 +1,20 @@
+import Controller from '@ember/controller';
+import { service } from '@ember/service';
+import { task } from 'ember-concurrency';
+
+export default class ConversationsController extends Controller {
+  @service store;
+  @service router;
+  @service currentSession;
+
+  create = task(async () => {
+    const now = new Date();
+    const conversation = this.store.createRecord('chat-conversation', {
+      created: now,
+      lastActivity: now,
+      creator: this.currentSession.user,
+    });
+    await conversation.save();
+    this.router.transitionTo('conversation', conversation.id);
+  });
+}

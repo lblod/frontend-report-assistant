@@ -1,0 +1,39 @@
+{{! The list, the composer, the poll loop }}
+<div class="chat-window">
+  <div class="chat-window__messages">
+    {{#unless this.messages.length}}
+      <p class="au-u-muted">{{@assistant.description}}</p>
+    {{/unless}}
+
+    {{#each this.messages key="id" as |message|}}
+      <Chat::Message
+        @message={{message}}
+        @isAssistant={{this.isAssistant message}}
+        @now={{this.now}}
+      />
+    {{/each}}
+
+    {{#if this.waitingForAnswer}}
+      <AuLoader @inline={{true}}>{{@assistant.name}} denkt na</AuLoader>
+    {{/if}}
+
+    {{#if this.answerTimedOut}}
+      <AuAlert @skin="warning" @title="Geen antwoord">
+        De assistent heeft niet geantwoord.
+        <AuButton @skin="link" {{on "click" this.refresh}}>Vernieuwen</AuButton>
+      </AuAlert>
+    {{/if}}
+
+    {{#if this.send.last.isError}}
+      <AuAlert
+        @skin="error"
+        @title="Niet verstuurd"
+      >{{this.send.last.error.message}}</AuAlert>
+    {{/if}}
+  </div>
+
+  <Chat::Composer
+    @onSend={{perform this.send}}
+    @disabled={{this.waitingForAnswer}}
+  />
+</div>

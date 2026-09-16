@@ -1,0 +1,24 @@
+{{page-title (app-name)}}
+
+<AuApp>
+  <AuMainHeader @homeRoute="conversations" @appTitle={{(app-name)}}>
+    {{#if this.session.isAuthenticated}}
+      <li class="au-c-list-horizontal__item">
+        <AuButton
+          @skin="link"
+          @icon="logout"
+          @iconAlignment="left"
+          {{on "click" this.logout}}
+        >
+          Afmelden
+        </AuButton>
+      </li>
+    {{/if}}
+  </AuMainHeader>
+
+  <main id="main" class="au-c-main-container">
+    {{outlet}}
+  </main>
+</AuApp>
+
+<AuModalContainer />

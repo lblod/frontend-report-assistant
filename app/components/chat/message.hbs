@@ -1,0 +1,10 @@
+<div
+  class="chat-message
+    {{if @isAssistant 'chat-message--assistant' 'chat-message--user'}}"
+>
+  <this.body
+    @message={{@message}}
+    @isAssistant={{@isAssistant}}
+    @now={{@now}}
+  />
+</div>
