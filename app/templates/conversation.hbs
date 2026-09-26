@@ -1,6 +1,21 @@
-<AuBodyContainer>
+<div class="au-c-main-container__sidebar chat-sidebar">
+  <Chat::Sidebar @conversations={{@model.conversations}} />
+</div>
+
+<div
+  id="content"
+  class="au-c-main-container__content chat-content"
+  tabindex="-1"
+>
+  <div class="chat-toolbar">
+    <AuHeading @level="1" @skin="3" class="chat-toolbar__title">
+      {{if @model.conversation.title @model.conversation.title "Nieuw gesprek"}}
+    </AuHeading>
+    <Chat::NewConversation />
+  </div>
+
   <Chat::Window
     @conversation={{@model.conversation}}
     @assistant={{@model.assistant}}
   />
-</AuBodyContainer>
+</div>

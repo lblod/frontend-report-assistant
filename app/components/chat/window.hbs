@@ -1,6 +1,9 @@
 {{! The list, the composer, the poll loop }}
 <div class="chat-window">
-  <div class="chat-window__messages">
+  <div
+    class="chat-window__messages"
+    {{chat-scroll-bottom this.conversation.id this.messages.length}}
+  >
     {{#unless this.messages.length}}
       <p class="au-u-muted">{{@assistant.description}}</p>
     {{/unless}}

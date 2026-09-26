@@ -1,0 +1,9 @@
+<AuButton
+  @icon="add"
+  @size={{if @large "large"}}
+  @loading={{this.create.isRunning}}
+  ...attributes
+  {{on "click" (perform this.create)}}
+>
+  Nieuw gesprek
+</AuButton>

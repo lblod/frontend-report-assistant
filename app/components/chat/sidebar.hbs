@@ -1,0 +1,29 @@
+<div class="au-c-sidebar">
+  <div class="au-c-sidebar__header">
+    <AuHeading @level="2" @skin="3">Gesprekken</AuHeading>
+  </div>
+  <div class="au-c-sidebar__content">
+    <ul class="au-c-list-navigation chat-sidebar__list">
+      {{#each @conversations as |conversation|}}
+        <li class="au-c-list-navigation__item">
+          <AuNavigationLink
+            @route="conversation"
+            @model={{conversation.id}}
+            class="chat-sidebar__link"
+          >
+            <span class="chat-sidebar__title">
+              {{if conversation.title conversation.title "Nieuw gesprek"}}
+            </span>
+            <span class="chat-sidebar__meta">
+              {{format-datetime conversation.lastActivity}}
+            </span>
+          </AuNavigationLink>
+        </li>
+      {{else}}
+        <li class="au-c-list-navigation__item">
+          <p class="au-u-muted chat-sidebar__empty">Nog geen gesprekken.</p>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</div>

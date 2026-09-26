@@ -1,8 +1,8 @@
-import Controller from '@ember/controller';
+import Component from '@glimmer/component';
 import { service } from '@ember/service';
 import { task } from 'ember-concurrency';
 
-export default class ConversationsController extends Controller {
+export default class ChatNewConversation extends Component {
   @service store;
   @service router;
   @service currentSession;
