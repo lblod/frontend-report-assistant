@@ -5,10 +5,7 @@ import { action } from '@ember/object';
 import { task, restartableTask, timeout } from 'ember-concurrency';
 import ENV from 'frontend-lblod-chat/config/environment';
 import { setting } from 'frontend-lblod-chat/utils/setting';
-import {
-  ANSWER_CEILING_MS,
-  FILE_CEILING_MS,
-} from 'frontend-lblod-chat/utils/ceilings';
+import { ANSWER_CEILING_MS } from 'frontend-lblod-chat/utils/ceilings';
 
 const POLL_MS = 3000;
 
@@ -60,17 +57,8 @@ export default class ChatWindow extends Component {
     );
   }
 
-  // Waiting for a file: an attachment has no url yet.
-  get waitingForFile() {
-    return this.messages.some(
-      (m) =>
-        this.age(m.created) < FILE_CEILING_MS &&
-        m.attachments.some((a) => !a.url),
-    );
-  }
-
   get waiting() {
-    return this.waitingForAnswer || this.waitingForFile;
+    return this.waitingForAnswer;
   }
 
   // One loop. Runs while there is something to wait for, and not otherwise.

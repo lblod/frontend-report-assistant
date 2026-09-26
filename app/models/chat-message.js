@@ -12,5 +12,5 @@ export default class ChatMessage extends Model {
     as: 'chat-message',
   })
   conversation;
-  @hasMany('chat-document', { async: false, inverse: null }) attachments;
+  @hasMany('file', { async: false, inverse: null }) attachments;
 }

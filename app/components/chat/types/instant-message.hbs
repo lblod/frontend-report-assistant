@@ -1,4 +1,4 @@
 {{@message.content}}
 {{#each @message.attachments as |document|}}
-  <Chat::Attachment @document={{document}} @late={{this.late}} />
+  <Chat::Attachment @document={{document}} />
 {{/each}}

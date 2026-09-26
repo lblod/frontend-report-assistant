@@ -1,6 +1,31 @@
 {{! Rendered markdown. Assistant content only; the user's own text stays
-    plain. The value is sanitized (DOMPurify) and marked safe in the js class. }}
-<div class="chat-md">{{this.html}}</div>
-{{#each @message.attachments as |document|}}
-  <Chat::Attachment @document={{document}} @late={{this.late}} />
-{{/each}}
+    plain. The value is sanitized (DOMPurify) and marked safe in the js class.
+    Attachments get their own tab, "bijlagen"; the text refers the user there. }}
+{{#if this.attachments.length}}
+  <div class="chat-bijlagen-tabs">
+    <button
+      type="button"
+      class="chat-bijlagen-tab {{unless this.showBijlagen 'chat-bijlagen-tab--active'}}"
+      {{on "click" this.showText}}
+    >Bericht</button>
+    <button
+      type="button"
+      class="chat-bijlagen-tab {{if this.showBijlagen 'chat-bijlagen-tab--active'}}"
+      {{on "click" this.openBijlagen}}
+    >Bijlagen ({{this.attachments.length}})</button>
+  </div>
+{{/if}}
+{{#if this.showBijlagen}}
+  {{#each this.attachments as |document|}}
+    <Chat::Attachment @document={{document}} />
+  {{/each}}
+{{else}}
+  <div class="chat-md">{{this.html}}</div>
+  {{#if this.attachments.length}}
+    <AuAlert @skin="info" @size="small" @title="Bijlagen beschikbaar" {{on "click" this.openBijlagen}}>
+      Dit antwoord bevat {{this.attachments.length}} bijlage(n), zoals de specifieke
+      specificatie van het rapport of de resultaten. Klik op Bijlagen voor de
+      uitleg per bijlage en om ze te downloaden.
+    </AuAlert>
+  {{/if}}
+{{/if}}
