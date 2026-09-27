@@ -5,7 +5,11 @@
   <Chat::NewConversation />
 </div>
 
-<Chat::Window
-  @conversation={{@model.conversation}}
-  @assistant={{@model.assistant}}
-/>
+{{! Ember keeps a component when only its arguments change. The key gives
+    each conversation its own window, so its poll starts in the constructor. }}
+{{#each (array @model.conversation) key="id" as |conversation|}}
+  <Chat::Window
+    @conversation={{conversation}}
+    @assistant={{@model.assistant}}
+  />
+{{/each}}

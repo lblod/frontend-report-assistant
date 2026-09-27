@@ -34,5 +34,35 @@
         </li>
       {{/each}}
     </ul>
+    {{! The list is newest first, so the next page holds older ones. }}
+    {{#if @conversations.meta.pagination.last.number}}
+      <div class="chat-sidebar__paging">
+        {{#if @conversations.meta.pagination.prev}}
+          <AuButton
+            @skin="link"
+            @icon="nav-left"
+            {{on
+              "click"
+              (fn this.showPage @conversations.meta.pagination.prev)
+            }}
+          >
+            Nieuwere
+          </AuButton>
+        {{/if}}
+        {{#if @conversations.meta.pagination.next}}
+          <AuButton
+            @skin="link"
+            @icon="nav-right"
+            @iconAlignment="right"
+            {{on
+              "click"
+              (fn this.showPage @conversations.meta.pagination.next)
+            }}
+          >
+            Oudere
+          </AuButton>
+        {{/if}}
+      </div>
+    {{/if}}
   </div>
 </div>

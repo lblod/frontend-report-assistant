@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
 
-export default class AuthorizationCallbackRoute extends Route {
+export default class AuthCallbackRoute extends Route {
   @service session;
 
   beforeModel() {

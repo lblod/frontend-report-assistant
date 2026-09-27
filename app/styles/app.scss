@@ -95,6 +95,11 @@
   color: var(--au-gray-600);
   text-decoration: none;
 }
+.chat-sidebar__paging {
+  display: flex;
+  justify-content: space-between;
+  padding: $au-unit-tiny $au-unit-small;
+}
 .chat-sidebar__empty {
   margin: 0;
   padding: $au-unit-tiny * 1.5 $au-unit-small;

@@ -89,11 +89,14 @@ export default class ChatWindow extends Component {
     // The 202 answers with the message id, but fetching that message alone
     // does not link it into the conversation: the resource sends relationships
     // as links, without data. Reload the conversation instead, so the question
-    // shows now and the poll loop sees it waits for an answer.
+    // shows now and the poll loop sees it waits for an answer. Without that
+    // reload nothing polls, so a failed one is an error too.
     try {
       await this.reload();
     } catch {
-      // the poll loop retries the reload
+      throw new Error(
+        'De vraag is verstuurd, maar het gesprek kon niet geladen worden. Vernieuw de pagina.',
+      );
     }
     this.poll.perform();
   });

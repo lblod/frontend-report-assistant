@@ -21,7 +21,7 @@ module.exports = function (environment) {
     acmidm: {
       clientId: '{{ACMIDM_CLIENT_ID}}',
       baseUrl: '{{ACMIDM_BASE_URL}}',
-      scope: 'openid vo profile abb_loketLB',
+      scope: '{{ACMIDM_SCOPE}}',
       redirectUrl: '{{ACMIDM_REDIRECT_URL}}',
       logoutUrl: '{{ACMIDM_LOGOUT_URL}}',
     },

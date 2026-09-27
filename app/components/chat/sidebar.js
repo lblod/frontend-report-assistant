@@ -23,4 +23,10 @@ export default class ChatSidebar extends Component {
     }
     this.router.refresh('conversations');
   }
+
+  // mu-cl-resources leaves page[number] out of the link to the first page.
+  @action
+  showPage(link) {
+    this.router.transitionTo({ queryParams: { page: link.number || 0 } });
+  }
 }

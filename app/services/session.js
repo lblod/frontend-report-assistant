@@ -34,9 +34,11 @@ export default class SessionService extends BaseSessionService {
     return isAuthenticated;
   }
 
-  handleAuthentication(routeAfterAuthentication) {
+  // Load the user before the first page shows: a conversation created
+  // before that would have no creator.
+  async handleAuthentication(routeAfterAuthentication) {
+    await this.currentSession.load();
     super.handleAuthentication(routeAfterAuthentication);
-    this.currentSession.load();
   }
 
   invalidate() {

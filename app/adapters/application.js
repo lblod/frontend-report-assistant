@@ -1,4 +1,5 @@
 import { JSONAPIAdapter } from '@warp-drive/legacy/adapter/json-api';
+import { ServerError } from '@warp-drive/legacy/adapter/error';
 
 export default class ApplicationAdapter extends JSONAPIAdapter {
   ajax(url, method) {
@@ -14,13 +15,19 @@ async function retryOnError(ajax, ajaxArgs, retryCount = 0) {
   try {
     return await ajax(...ajaxArgs);
   } catch (error) {
-    if (retryCount < MAX_RETRIES) {
+    if (retryCount < MAX_RETRIES && isWorthRetrying(error)) {
       await sleep(250 * (retryCount + 1));
       return retryOnError(ajax, ajaxArgs, retryCount + 1);
     } else {
       throw error;
     }
   }
+}
+
+// A server error or a lost connection can pass on a next try. A 4xx gives
+// the same answer again.
+function isWorthRetrying(error) {
+  return error instanceof ServerError || !error?.isAdapterError;
 }
 
 function sleep(time) {

@@ -20,6 +20,7 @@ docker image, which fills the `{{PLACEHOLDER}}` strings in
 | `EMBER_ACMIDM_BASE_URL`     | ACM/IDM authorisation base URL.        |
 | `EMBER_ACMIDM_REDIRECT_URL` | Callback URL ACM/IDM uses after login. |
 | `EMBER_ACMIDM_LOGOUT_URL`   | URL users go to when they log out.     |
+| `EMBER_ACMIDM_SCOPE`        | Scope the ACM/IDM client asks for.     |
 
 Without the ACM/IDM variables the app uses mock login.
 

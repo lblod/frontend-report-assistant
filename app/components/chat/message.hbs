@@ -27,17 +27,16 @@
     {{else}}
       <div class="chat-md">{{this.html}}</div>
       {{#if @message.attachments.length}}
-        <AuAlert
-          @skin="info"
-          @size="small"
-          @title="Bijlagen beschikbaar"
-          {{on "click" this.openBijlagen}}
-        >
+        <AuAlert @skin="info" @size="small" @title="Bijlagen beschikbaar">
           Dit antwoord bevat
           {{@message.attachments.length}}
           bijlage(n), zoals de specifieke specificatie van het rapport of de
-          resultaten. Klik op Bijlagen voor de uitleg per bijlage en om ze te
-          downloaden.
+          resultaten. Klik op
+          <AuButton
+            @skin="link"
+            {{on "click" this.openBijlagen}}
+          >Bijlagen</AuButton>
+          voor de uitleg per bijlage en om ze te downloaden.
         </AuAlert>
       {{/if}}
     {{/if}}
