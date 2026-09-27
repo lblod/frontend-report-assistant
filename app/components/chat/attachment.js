@@ -2,9 +2,11 @@ import Component from '@glimmer/component';
 
 // One row of the bijlagen overview: what it is, and where to get it.
 export default class ChatAttachment extends Component {
-  // The file service serves every bijlage at /files/<uuid>/download.
+  // The file service serves every bijlage at /files/<uuid>/download. It
+  // names the download after the physical file unless ?name= says otherwise.
   get href() {
-    return `/files/${this.uuid}/download`;
+    const name = encodeURIComponent(this.args.document.filename || '');
+    return `/files/${this.uuid}/download?name=${name}`;
   }
 
   get uuid() {

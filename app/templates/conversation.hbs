@@ -1,5 +1,8 @@
 <div class="au-c-main-container__sidebar chat-sidebar">
-  <Chat::Sidebar @conversations={{@model.conversations}} />
+  <Chat::Sidebar
+    @conversations={{@model.conversations}}
+    @currentConversation={{@model.conversation}}
+  />
 </div>
 
 <div

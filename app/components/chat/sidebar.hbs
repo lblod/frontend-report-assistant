@@ -5,7 +5,7 @@
   <div class="au-c-sidebar__content">
     <ul class="au-c-list-navigation chat-sidebar__list">
       {{#each @conversations as |conversation|}}
-        <li class="au-c-list-navigation__item">
+        <li class="au-c-list-navigation__item chat-sidebar__item">
           <AuNavigationLink
             @route="conversation"
             @model={{conversation.id}}
@@ -18,6 +18,15 @@
               {{format-datetime conversation.lastActivity}}
             </span>
           </AuNavigationLink>
+          <button
+            type="button"
+            class="chat-sidebar__delete"
+            title="Gesprek verwijderen"
+            aria-label="Gesprek verwijderen"
+            {{on "click" (fn this.delete conversation)}}
+          >
+            <AuIcon @icon="trash" @ariaHidden="true" />
+          </button>
         </li>
       {{else}}
         <li class="au-c-list-navigation__item">

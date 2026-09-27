@@ -45,10 +45,46 @@
 .chat-sidebar__list {
   display: block;
 }
+/* The trash bin of a conversation, on the right of its row. The link gets
+   extra room so a truncated title does not run under the button. */
+.chat-sidebar__item {
+  position: relative;
+}
 .chat-sidebar__link {
   flex-direction: column;
   align-items: flex-start;
   gap: 0.1rem;
+  padding-right: $au-unit;
+}
+.chat-sidebar__delete {
+  position: absolute;
+  top: 50%;
+  right: $au-unit-tiny;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: $au-unit * 1.2;
+  height: $au-unit * 1.2;
+  padding: 0;
+  border: none;
+  border-radius: 0.2rem;
+  background: none;
+  color: var(--au-gray-600);
+  cursor: pointer;
+  transition:
+    color var(--au-transition),
+    background-color var(--au-transition);
+
+  &:hover,
+  &:focus {
+    color: var(--au-red-600);
+    background-color: var(--au-gray-200);
+  }
+
+  &:focus {
+    outline: var(--au-outline);
+  }
 }
 .chat-sidebar__title {
   max-width: 100%;
