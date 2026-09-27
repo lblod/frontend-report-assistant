@@ -1,6 +1,8 @@
 # frontend-report-assistant
 
-Chat frontend for the report assistant. Admin users ask questions in Dutch
+Chat frontend for the report assistant. Work in progress, POC phase.
+
+Users ask questions in Dutch
 and get a CSV report. The chat talks to the assistant backend via the
 `/assistant` route of the app it is wired into. OAuth login goes through
 ACM/IDM, with mock login as fallback.
