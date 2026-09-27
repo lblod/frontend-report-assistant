@@ -1,8 +1,12 @@
+## v0.3.0 (2026-09-27)
+
+#### :rocket: Enhancement
+- The header shows who is signed in, and for which organization. The user's bestuurseenheden are included when the account loads, so the group name is there.
+
 ## v0.2.0 (2026-09-27)
 
 #### :rocket: Enhancement
 - The sidebar pages through the conversations, newest first.
-- The header shows who is signed in, and for which organization.
 
 #### :bug: Bugfix
 - Adapter requests are retried only on server errors and lost connections, not on 4xx answers.
