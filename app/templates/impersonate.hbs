@@ -1,0 +1,59 @@
+{{page-title "Simuleer een bestuurseenheid"}}
+
+<AuBodyContainer @scroll={{true}}>
+  <div id="content">
+    <div class="au-o-region-large">
+      <div class="au-o-layout">
+        <AuHeading @skin="4">Simuleer een bestuurseenheid</AuHeading>
+        <p class="au-u-margin-top-small">
+          Je werkt dan met de gegevens van die bestuurseenheid. Je gesprekken
+          horen bij die bestuurseenheid: andere admins die ze simuleren, zien ze
+          ook.
+        </p>
+        <p class="au-u-margin-top-small au-u-margin-bottom">
+          <AuLabel for="impersonate-searchbox">Bestuurseenheid zoeken</AuLabel>
+          <input
+            id="impersonate-searchbox"
+            class="au-c-input au-c-input--block"
+            placeholder="Aalst, Berchem, &hellip;"
+            value={{this.gemeente}}
+            {{on "input" (perform this.updateSearch value="target.value")}}
+          />
+        </p>
+
+        {{#if this.impersonate.last.isError}}
+          <AuAlert
+            @icon="alert-triangle"
+            @title="Simuleren is mislukt. Probeer het opnieuw."
+            @skin="error"
+          />
+        {{/if}}
+
+        {{#if this.impersonate.isRunning}}
+          <AuLoader @padding="small" />
+        {{else}}
+          {{#each this.model as |account|}}
+            <AuButton
+              class="au-u-flex au-u-flex--row au-u-flex--start au-c-card au-u-margin-bottom-small"
+              @skin="secondary"
+              @width="block"
+              @size="large"
+              type="button"
+              {{on "click" (perform this.impersonate account.id)}}
+            >
+              {{account.gebruiker.voornaam}}
+              {{account.gebruiker.achternaam}}
+            </AuButton>
+          {{/each}}
+          <AuDataTableNumberPagination
+            @page={{this.page}}
+            @size={{this.size}}
+            @nbOfItems={{this.model.length}}
+            @total={{this.model.meta.count}}
+            @links={{this.model.meta.pagination}}
+          />
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</AuBodyContainer>

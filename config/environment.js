@@ -25,6 +25,7 @@ module.exports = function (environment) {
       redirectUrl: '{{ACMIDM_REDIRECT_URL}}',
       logoutUrl: '{{ACMIDM_LOGOUT_URL}}',
     },
+    adminRole: '{{ADMIN_ROLE}}',
   };
 
   if (environment === 'development') {

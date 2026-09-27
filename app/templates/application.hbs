@@ -3,6 +3,11 @@
 <AuApp>
   <AuMainHeader @homeRoute="conversations" @appTitle="Rapportassistent">
     {{#if this.session.isAuthenticated}}
+      {{#if this.currentSession.isAdmin}}
+        <li class="au-c-list-horizontal__item">
+          <ImpersonationMenu />
+        </li>
+      {{/if}}
       <li class="au-c-list-horizontal__item">
         <span class="chat-user">
           <AuIcon @icon="user" @ariaHidden="true" />

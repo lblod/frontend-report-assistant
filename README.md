@@ -14,8 +14,22 @@ assistant backend via the `/assistant` route of the app it is wired into.
 | `EMBER_ACMIDM_REDIRECT_URL` | Callback URL ACM/IDM uses after login. |
 | `EMBER_ACMIDM_LOGOUT_URL`   | URL users go to when they log out.     |
 | `EMBER_ACMIDM_SCOPE`        | Scope the ACM/IDM client asks for.     |
+| `EMBER_ADMIN_ROLE`          | Admin role; turns on impersonation.    |
 
 Without the ACM/IDM variables the app uses mock login.
+
+## Impersonation
+
+With `EMBER_ADMIN_ROLE` set (`LoketLB-admin` in LPDC), an admin gets a menu to
+act as a bestuurseenheid ("simuleren"), as in the loket. The admin then sees
+that bestuur's data, and reports run on it. The backend needs
+[impersonation-service](https://github.com/lblod/impersonation-service) on
+`/impersonations`, and one mock account per bestuur to impersonate
+(`update-bestuurseenheid-mock-login`), as app-lpdc-digitaal-loket has.
+
+During an impersonation, the session is the mock account's, so the
+conversations are too: every admin who acts as the same bestuur sees the same
+conversations.
 
 ## Pair it with the backend
 
