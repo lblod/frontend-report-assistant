@@ -1,5 +1,5 @@
 import Component from '@glimmer/component';
-import { componentFor } from 'frontend-lblod-chat/utils/message-types';
+import { componentFor } from 'frontend-report-assistant/utils/message-types';
 
 export default class ChatMessage extends Component {
   get body() {

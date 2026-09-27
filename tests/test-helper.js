@@ -1,6 +1,6 @@
 import '@warp-drive/ember/install';
-import Application from 'frontend-lblod-chat/app';
-import config from 'frontend-lblod-chat/config/environment';
+import Application from 'frontend-report-assistant/app';
+import config from 'frontend-report-assistant/config/environment';
 import * as QUnit from 'qunit';
 import { setApplication } from '@ember/test-helpers';
 import { setup } from 'qunit-dom';

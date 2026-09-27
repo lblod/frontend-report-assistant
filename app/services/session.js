@@ -1,6 +1,6 @@
 import { service } from '@ember/service';
 import BaseSessionService from 'ember-simple-auth/services/session';
-import ENV from 'frontend-lblod-chat/config/environment';
+import ENV from 'frontend-report-assistant/config/environment';
 
 export default class SessionService extends BaseSessionService {
   @service currentSession;

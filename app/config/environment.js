@@ -1,7 +1,7 @@
 import loadConfigFromMeta from '@embroider/config-meta-loader';
 import { assert } from '@ember/debug';
 
-const config = loadConfigFromMeta('frontend-lblod-chat');
+const config = loadConfigFromMeta('frontend-report-assistant');
 
 assert(
   'config is not an object',

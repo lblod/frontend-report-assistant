@@ -3,9 +3,9 @@ import { service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { task, restartableTask, timeout } from 'ember-concurrency';
-import ENV from 'frontend-lblod-chat/config/environment';
-import { setting } from 'frontend-lblod-chat/utils/setting';
-import { ANSWER_CEILING_MS } from 'frontend-lblod-chat/utils/ceilings';
+import ENV from 'frontend-report-assistant/config/environment';
+import { setting } from 'frontend-report-assistant/utils/setting';
+import { ANSWER_CEILING_MS } from 'frontend-report-assistant/utils/ceilings';
 
 const POLL_MS = 3000;
 

@@ -1,11 +1,11 @@
 {
-  "name": "frontend-lblod-chat",
+  "name": "frontend-report-assistant",
   "version": "0.1.0",
   "private": true,
   "description": "Chat frontend for the natural language report assistant",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lblod/frontend-lblod-chat.git"
+    "url": "git+https://github.com/lblod/frontend-report-assistant.git"
   },
   "license": "MIT",
   "author": "info@redpencil.io",

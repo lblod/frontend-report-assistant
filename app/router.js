@@ -1,5 +1,5 @@
 import EmberRouter from '@embroider/router';
-import config from 'frontend-lblod-chat/config/environment';
+import config from 'frontend-report-assistant/config/environment';
 
 export default class Router extends EmberRouter {
   location = config.locationType;

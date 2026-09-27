@@ -2,7 +2,7 @@
 
 module.exports = function (environment) {
   const ENV = {
-    modulePrefix: 'frontend-lblod-chat',
+    modulePrefix: 'frontend-report-assistant',
     environment,
     rootURL: '/',
     locationType: 'history',

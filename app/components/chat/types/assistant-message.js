@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { htmlSafe } from '@ember/template';
-import { renderMarkdown } from 'frontend-lblod-chat/utils/markdown';
+import { renderMarkdown } from 'frontend-report-assistant/utils/markdown';
 
 export default class AssistantMessage extends Component {
   @tracked showBijlagen = false;
