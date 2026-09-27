@@ -2,15 +2,8 @@
 
 Chat frontend for the report assistant. Work in progress, POC phase.
 
-Users ask questions in Dutch
-and get a CSV report. The chat talks to the assistant backend via the
-`/assistant` route of the app it is wired into. OAuth login goes through
-ACM/IDM, with mock login as fallback.
-
-It is an Ember app, built with Vite, hosted by the
-[mu-semtech/static-file-service](https://github.com/mu-semtech/static-file-service)
-docker image, which fills the `{{PLACEHOLDER}}` strings in
-`config/environment.js` from environment variables at container start.
+Users ask questions in Dutch and get a CSV report. The chat talks to the
+assistant backend via the `/assistant` route of the app it is wired into.
 
 ## Environment variables
 
