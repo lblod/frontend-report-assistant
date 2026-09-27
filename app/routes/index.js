@@ -3,11 +3,9 @@ import { service } from '@ember/service';
 
 export default class IndexRoute extends Route {
   @service router;
-  @service session;
 
-  beforeModel(transition) {
-    this.session.requireAuthentication(transition, 'login');
+  // conversations checks the login.
+  beforeModel() {
     this.router.transitionTo('conversations');
-    super.beforeModel(...arguments);
   }
 }

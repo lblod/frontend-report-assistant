@@ -20,8 +20,4 @@ export default class Gebruiker extends Model {
   get group() {
     return this.hasMany('bestuurseenheden').value()[0];
   }
-
-  get fullName() {
-    return `${this.voornaam} ${this.achternaam}`.trim();
-  }
 }

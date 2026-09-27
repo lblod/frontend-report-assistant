@@ -1,23 +1,19 @@
 import Component from '@glimmer/component';
 
-// One row of the bijlagen overview: what it is, and where to get it.
 export default class ChatAttachment extends Component {
-  // The file service serves every bijlage at /files/<uuid>/download. It
-  // names the download after the physical file unless ?name= says otherwise.
+  // The file service names the download after the physical file
+  // (<uuid>.csv) unless ?name= says otherwise.
   get href() {
     const name = encodeURIComponent(this.args.document.filename || '');
-    return `/files/${this.uuid}/download?name=${name}`;
+    return `/files/${this.args.document.id}/download?name=${name}`;
   }
 
-  get uuid() {
-    return String(this.args.document.uri || '').split('/').pop();
-  }
-
-  // What the document holds, in Dutch, so the overview explains itself.
   get what() {
     const format = this.args.document.format || '';
-    if (format.includes('turtle')) return 'De specificatie van het rapport als Turtle-bestand';
-    if (format.includes('csv')) return 'De resultaten van het rapport als CSV-bestand';
+    if (format.includes('turtle'))
+      return 'De specificatie van het rapport als Turtle-bestand';
+    if (format.includes('csv'))
+      return 'De resultaten van het rapport als CSV-bestand';
     return 'Bestand';
   }
 }

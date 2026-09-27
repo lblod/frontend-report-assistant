@@ -8,8 +8,4 @@ export default class Bestuurseenheid extends Model {
     inverse: null,
   })
   classificatie;
-
-  get fullName() {
-    return `${this.classificatie.get('label')} ${this.naam}`.trim();
-  }
 }

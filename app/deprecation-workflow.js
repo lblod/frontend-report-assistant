@@ -25,18 +25,5 @@ setupDeprecationWorkflow({
       handler: 'silence',
       matchId: 'warp-drive:deprecate-legacy-request-methods',
     },
-    // TODO: resolve these before updating to ember-power-select v9
-    {
-      handler: 'silence',
-      matchId: 'ember-power-select.deprecate-power-select-multiple',
-    },
-    {
-      handler: 'silence',
-      matchId: 'ember-power-select.deprecate-power-select-multiple-trigger',
-    },
-    {
-      handler: 'silence',
-      matchId: 'ember-power-select.deprecate-power-select-multiple-input',
-    },
   ],
 });

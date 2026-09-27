@@ -7,7 +7,7 @@
       {{#each @conversations as |conversation|}}
         <li class="au-c-list-navigation__item chat-sidebar__item">
           <AuNavigationLink
-            @route="conversation"
+            @route="conversations.conversation"
             @model={{conversation.id}}
             class="chat-sidebar__link"
           >

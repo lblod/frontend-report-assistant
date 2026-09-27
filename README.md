@@ -14,14 +14,12 @@ docker image, which fills the `{{PLACEHOLDER}}` strings in
 
 ## Environment variables
 
-| Name                  | Description                                                                            |
-| --------------------- | -------------------------------------------------------------------------------------- |
-| `EMBER_APP_NAME`      | App name shown in the UI. Defaults to `Assistent`.                               |
-| `EMBER_ASSISTANT_PATH`| Base path of the assistant backend in the wired app. Defaults to `/assistant`.          |
-| `EMBER_ACMIDM_CLIENT_ID`     | ACM/IDM client id for the environment.                                          |
-| `EMBER_ACMIDM_BASE_URL`      | ACM/IDM authorisation base URL.                                                 |
-| `EMBER_ACMIDM_REDIRECT_URL`  | Callback URL ACM/IDM uses after login.                                          |
-| `EMBER_ACMIDM_LOGOUT_URL`    | URL users go to when they log out.                                              |
+| Name                        | Description                            |
+| --------------------------- | -------------------------------------- |
+| `EMBER_ACMIDM_CLIENT_ID`    | ACM/IDM client id for the environment. |
+| `EMBER_ACMIDM_BASE_URL`     | ACM/IDM authorisation base URL.        |
+| `EMBER_ACMIDM_REDIRECT_URL` | Callback URL ACM/IDM uses after login. |
+| `EMBER_ACMIDM_LOGOUT_URL`   | URL users go to when they log out.     |
 
 Without the ACM/IDM variables the app uses mock login.
 

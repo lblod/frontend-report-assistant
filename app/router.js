@@ -10,7 +10,8 @@ Router.map(function () {
   this.route('login');
   this.route('mock-login');
   this.route('authorization-callback', { path: '/authorization/callback' });
-  this.route('conversations');
-  this.route('conversation', { path: '/conversations/:id' });
+  this.route('conversations', function () {
+    this.route('conversation', { path: '/:id' });
+  });
   this.route('route-not-found', { path: '/*wildcard' });
 });

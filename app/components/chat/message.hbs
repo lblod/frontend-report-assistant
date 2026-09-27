@@ -1,10 +1,47 @@
+{{! The assistant answers in markdown; the user's own text stays plain. }}
 <div
   class="chat-message
     {{if @isAssistant 'chat-message--assistant' 'chat-message--user'}}"
 >
-  <this.body
-    @message={{@message}}
-    @isAssistant={{@isAssistant}}
-    @now={{@now}}
-  />
+  {{#if @isAssistant}}
+    {{#if @message.attachments.length}}
+      <div class="chat-bijlagen-tabs">
+        <button
+          type="button"
+          class="chat-bijlagen-tab
+            {{unless this.showBijlagen 'chat-bijlagen-tab--active'}}"
+          {{on "click" this.showText}}
+        >Bericht</button>
+        <button
+          type="button"
+          class="chat-bijlagen-tab
+            {{if this.showBijlagen 'chat-bijlagen-tab--active'}}"
+          {{on "click" this.openBijlagen}}
+        >Bijlagen ({{@message.attachments.length}})</button>
+      </div>
+    {{/if}}
+    {{#if this.showBijlagen}}
+      {{#each @message.attachments as |document|}}
+        <Chat::Attachment @document={{document}} />
+      {{/each}}
+    {{else}}
+      <div class="chat-md">{{this.html}}</div>
+      {{#if @message.attachments.length}}
+        <AuAlert
+          @skin="info"
+          @size="small"
+          @title="Bijlagen beschikbaar"
+          {{on "click" this.openBijlagen}}
+        >
+          Dit antwoord bevat
+          {{@message.attachments.length}}
+          bijlage(n), zoals de specifieke specificatie van het rapport of de
+          resultaten. Klik op Bijlagen voor de uitleg per bijlage en om ze te
+          downloaden.
+        </AuAlert>
+      {{/if}}
+    {{/if}}
+  {{else}}
+    <div class="chat-message__text">{{@message.content}}</div>
+  {{/if}}
 </div>

@@ -26,8 +26,6 @@
 // UTILITIES
 @import "@appuniversum/ember-appuniversum/styles/a-utilities";
 
-// CHAT
-
 /* ==================================
    #CHAT LAYOUT
    Sidebar with the conversation overview (1/5 of the screen) next to a
@@ -165,7 +163,6 @@
   margin: 0 auto 1rem;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-  white-space: pre-wrap;
 }
 .chat-message--user {
   background: var(--au-blue-100);
@@ -174,6 +171,11 @@
 .chat-message--assistant {
   background: var(--au-gray-100);
   margin-right: 8rem;
+}
+/* Keeps the line breaks of the user's question. Not on the whole message:
+   the markdown of an answer already has its breaks as html. */
+.chat-message__text {
+  white-space: pre-wrap;
 }
 .chat-composer {
   border-top: 1px solid var(--au-gray-200);
@@ -230,30 +232,6 @@
   color: var(--au-gray-500);
 }
 
-/* The turtle spec, hidden behind a disclosure */
-.chat-md__spec {
-  margin: 0 0 0.5rem;
-}
-.chat-md__spec summary {
-  cursor: pointer;
-  color: var(--au-gray-700);
-  font-size: 0.9em;
-}
-.chat-md__spec summary:hover {
-  color: var(--au-gray-600);
-}
-/* the SPARQL translation, inside the same disclosure */
-.chat-md__spec-queries {
-  margin-top: 0.5rem;
-  padding-top: 0.5rem;
-  border-top: 1px solid var(--au-gray-300, #ccc);
-}
-.chat-md__spec-queries .chat-md__queries-label {
-  margin: 0 0 0.25rem;
-  color: var(--au-gray-700);
-  font-size: 0.9em;
-}
-
 /* The attachment tab inside an assistant message */
 .chat-bijlagen-tabs {
   display: flex;
@@ -273,7 +251,7 @@
   background: var(--au-gray-100);
   font-weight: 600;
 }
-.chat-attachment--row {
+.chat-attachment {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -286,8 +264,7 @@
   flex-direction: column;
   gap: 0.125rem;
 }
-.chat-attachment__what,
-.chat-attachment__pending {
+.chat-attachment__what {
   color: var(--au-gray-500);
   font-size: 0.85em;
 }

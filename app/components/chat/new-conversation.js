@@ -15,6 +15,12 @@ export default class ChatNewConversation extends Component {
       creator: this.currentSession.user,
     });
     await conversation.save();
-    this.router.transitionTo('conversation', conversation.id);
+    await this.router.transitionTo(
+      'conversations.conversation',
+      conversation.id,
+    );
+    // The sidebar shows the list the conversations route loaded; load it
+    // again so the new conversation is in it.
+    this.router.refresh('conversations');
   });
 }

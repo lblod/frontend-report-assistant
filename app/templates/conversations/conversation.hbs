@@ -1,0 +1,11 @@
+<div class="chat-toolbar">
+  <AuHeading @level="1" @skin="3" class="chat-toolbar__title">
+    {{if @model.conversation.title @model.conversation.title "Nieuw gesprek"}}
+  </AuHeading>
+  <Chat::NewConversation />
+</div>
+
+<Chat::Window
+  @conversation={{@model.conversation}}
+  @assistant={{@model.assistant}}
+/>

@@ -3,29 +3,24 @@ import { service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { task, restartableTask, timeout } from 'ember-concurrency';
-import ENV from 'frontend-report-assistant/config/environment';
-import { setting } from 'frontend-report-assistant/utils/setting';
-import { ANSWER_CEILING_MS } from 'frontend-report-assistant/utils/ceilings';
 
 const POLL_MS = 3000;
+// Past this, the service is not coming back with an answer: stop polling
+// and say so.
+const ANSWER_CEILING_MS = 10 * 60 * 1000;
 
 export default class ChatWindow extends Component {
   @service store;
 
   @tracked now = Date.now();
-  assistantPath = setting(ENV.assistantPath, '/assistant');
 
   constructor() {
     super(...arguments);
     this.poll.perform();
   }
 
-  get conversation() {
-    return this.args.conversation;
-  }
-
   get messages() {
-    return this.conversation.messages
+    return this.args.conversation.messages
       .slice()
       .sort((a, b) => a.created - b.created);
   }
@@ -40,7 +35,8 @@ export default class ChatWindow extends Component {
     return this.now - date.getTime();
   }
 
-  // Waiting for an answer: the newest message is the user's.
+  // The service answers after the 202: the newest message is the user's
+  // until the answer is written.
   get waitingForAnswer() {
     return (
       !!this.last &&
@@ -57,29 +53,28 @@ export default class ChatWindow extends Component {
     );
   }
 
-  get waiting() {
-    return this.waitingForAnswer;
-  }
-
-  // One loop. Runs while there is something to wait for, and not otherwise.
   poll = restartableTask(async () => {
-    while (this.waiting) {
+    while (this.waitingForAnswer) {
       await timeout(POLL_MS);
       await this.reload();
     }
   });
 
   async reload() {
-    await this.store.findRecord('chat-conversation', this.conversation.id, {
-      reload: true,
-      include: 'messages.attachments',
-    });
+    await this.store.findRecord(
+      'chat-conversation',
+      this.args.conversation.id,
+      {
+        reload: true,
+        include: 'messages.attachments',
+      },
+    );
     this.now = Date.now();
   }
 
   send = task(async (content) => {
     const res = await fetch(
-      `${this.assistantPath}/conversations/${this.conversation.id}/turns`,
+      `/assistant/conversations/${this.args.conversation.id}/turns`,
       {
         method: 'POST',
         headers: {
@@ -94,7 +89,7 @@ export default class ChatWindow extends Component {
     // The 202 answers with the message id, but fetching that message alone
     // does not link it into the conversation: the resource sends relationships
     // as links, without data. Reload the conversation instead, so the question
-    // shows now and `waiting` turns true for the poll loop.
+    // shows now and the poll loop sees it waits for an answer.
     try {
       await this.reload();
     } catch {

@@ -1,11 +1,24 @@
 import Component from '@glimmer/component';
-import { componentFor } from 'frontend-report-assistant/utils/message-types';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
+import { htmlSafe } from '@ember/template';
+import { renderMarkdown } from 'frontend-report-assistant/utils/markdown';
 
 export default class ChatMessage extends Component {
-  get body() {
-    return componentFor(
-      this.args.message.constructor.modelName,
-      this.args.isAssistant,
-    );
+  @tracked showBijlagen = false;
+
+  // renderMarkdown sanitizes; htmlSafe only stops Ember from escaping it.
+  get html() {
+    return htmlSafe(renderMarkdown(this.args.message.content));
+  }
+
+  @action
+  openBijlagen() {
+    this.showBijlagen = true;
+  }
+
+  @action
+  showText() {
+    this.showBijlagen = false;
   }
 }

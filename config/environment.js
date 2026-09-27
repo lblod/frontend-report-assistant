@@ -18,11 +18,6 @@ module.exports = function (environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
-    // {{PLACEHOLDER}} strings, filled in at container start by the
-    // static-file-service from EMBER_* variables. Unfilled ones still start
-    // with "{{"; app/utils/setting.js falls back to the default then.
-    appName: '{{APP_NAME}}',
-    assistantPath: '{{ASSISTANT_PATH}}',
     acmidm: {
       clientId: '{{ACMIDM_CLIENT_ID}}',
       baseUrl: '{{ACMIDM_BASE_URL}}',

@@ -3,7 +3,6 @@ import { service } from '@ember/service';
 import { warn } from '@ember/debug';
 
 export default class ApplicationRoute extends Route {
-  @service router;
   @service session;
   @service currentSession;
 
