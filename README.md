@@ -3,10 +3,10 @@
 Chat frontend for the report assistant. Admin users ask questions in Dutch
 and get a CSV report. The chat talks to the assistant backend via the
 `/assistant` route of the app it is wired into. OAuth login goes through
-ACM/IDM. When ACM/IDM is not configured, the app falls back to mock login.
+ACM/IDM, with mock login as fallback.
 
-It is an Ember app, built with Vite. The built app is a static frontend hosted
-by the [mu-semtech/static-file-service](https://github.com/mu-semtech/static-file-service)
+It is an Ember app, built with Vite, hosted by the
+[mu-semtech/static-file-service](https://github.com/mu-semtech/static-file-service)
 docker image, which fills the `{{PLACEHOLDER}}` strings in
 `config/environment.js` from environment variables at container start.
 
@@ -29,14 +29,36 @@ Without the ACM/IDM variables the app uses mock login.
 app that hosts this frontend proxies `/assistant` to it. See the
 `chat` service and the dispatcher config in `app-organization-portal`.
 
-## Developing locally
+## Prerequisites
 
-Don't run the docker stack. Start the app itself:
+You will need the following things properly installed on your computer.
+
+- Git
+- Node.js (with npm)
+- Ember CLI
+- Google Chrome
+
+## Installation
 
 ```
-npm ci
+git clone <repository-url>
+cd frontend-report-assistant
+npm install
+```
+
+## Running / Development
+
+```
 npm run start
 ```
 
+Visit your app at http://localhost:4200.
+
 `.env.development` points the app proxy at `localhost:90`. The umbrella app
 (`app-organization-portal`) should run there.
+
+## Running Tests
+
+```
+npm run test
+```
