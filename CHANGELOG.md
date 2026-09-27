@@ -2,6 +2,7 @@
 
 #### :rocket: Enhancement
 - The sidebar pages through the conversations, newest first.
+- The header shows who is signed in, and for which organization.
 
 #### :bug: Bugfix
 - Adapter requests are retried only on server errors and lost connections, not on 4xx answers.

@@ -18,6 +18,6 @@ export default class Gebruiker extends Model {
   bestuurseenheden;
 
   get group() {
-    return this.hasMany('bestuurseenheden').value()[0];
+    return this.hasMany('bestuurseenheden').value()?.[0];
   }
 }

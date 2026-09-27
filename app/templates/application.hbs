@@ -4,6 +4,15 @@
   <AuMainHeader @homeRoute="conversations" @appTitle="Rapportassistent">
     {{#if this.session.isAuthenticated}}
       <li class="au-c-list-horizontal__item">
+        <span class="chat-user">
+          <AuIcon @icon="user" @ariaHidden="true" />
+          {{this.userName}}
+          {{#if this.userOrg}}
+            <span class="au-u-muted">({{this.userOrg}})</span>
+          {{/if}}
+        </span>
+      </li>
+      <li class="au-c-list-horizontal__item">
         <AuButton
           @skin="link"
           @icon="logout"
